@@ -262,20 +262,24 @@ for row in clinical_trials:
 CT_choices = [(row['clinical_trial_id'], row['lead_physician']) for row in CT_results]
 print(CT_choices)
 
-
-#so as we have it in the page, when you click on clinical trial, 
-#it links to participates in
-#what if we switched it to a list of the trials
-#and we click a trial and then that shows all the participates
 class TrialUpdateForm(FlaskForm):
-    clinical_trial_id = IntegerField('Clinical Trial ID', choices=CS)
-    lead_physician = StringField('Lead Physician Name:', validators=[DataRequired(),Length(max=70)])
+    clinical_trial_id = SelectField('Clinical Trial ID', choices=CT_choices)
+    lead_physician=StringField('Lead Physician Name:', validators=[DataRequired(),Length(max=15)])
+    #lead_physician = StringField('Lead Physician Name:', validators=[DataRequired(),Length(max=70)])
     submit = SubmitField('Update clinical trial.')
+    
+    def validate_assign(self, lead_physician):  
+        clinical_trial = Clinical_trial.query.filter_by(lead_physician = lead_physician.data).first()
+        #clinical_trial = Clinical_trial.query.filter_by(clinical_trial_id=clinical_trial_id.data).first()
+        if clinical_trial and (str(clinical_trial.clinical_trial_id) != str(self.lead_physician.data)):
+            raise ValidationError('That clinical trial ID is currently assigned. Please choose a different one.')
+         
     
     
 class TrialForm(FlaskForm):
     clinical_trial_id = IntegerField('Clinical Trial ID', validators= [DataRequired()])
-    lead_physician = StringField('Lead Physician Name:', validators=[DataRequired(),Length(max=70)])
+    lead_physician=StringField('Lead Physician Name:', validators=[DataRequired(),Length(max=15)])
+    #lead_physician = StringField('Lead Physician Name:', validators=[DataRequired(),Length(max=70)])
     submit = SubmitField('Add this clinical trial')
     
     def validate_assign(self, clinical_trial_id):  

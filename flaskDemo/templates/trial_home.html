@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class = "media content-section">
-  <a class="nav-item nav-link" href="{{ url_for('new_trial') }}">Add New Clinical Trial</a>
+  <a class="nav-item nav-link" href="{{ url_for('new_trial') }}">Add New Trial</a>
 </div>
-
     {% for row in outString %}
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-			<h5><a class="article-title" href="{{ url_for('clinical_trial', clinical_trial_id=row.clinical_trial_id) }}">Clinical Trial ID: {{ row.clinical_trial_id }}</a></h5>
-              <small class="text-muted"> Lead Physician: {{ row['lead_physician'] }}</small>
+              <a class="mr-2">Clinical Trial Number: {{row['clinical_trial_id']}}</a> </br>
+              <a class="text-muted"> Lead Physician: {{ row['lead_physician'] }}</a>
             </div>
+
           </div>
         </article>
      {% endfor %}

@@ -9,9 +9,9 @@ from flaskDemo.models import User, Department, Drug, Employee, Protein, Interact
 from wtforms.fields.html5 import DateField
 
 #Insertion
-#me = Drug(drug_name = 'Zolgensma', drug_type = 'Gene therapy')
-#db.session.add(me)
-#db.session.commit()
+me = Drug(drug_name = 'Zolgensma', drug_type = 'Gene therapy')
+db.session.add(me)
+db.session.commit()
 
 
 drugs = Drug.query.with_entities(Drug.drug_name)

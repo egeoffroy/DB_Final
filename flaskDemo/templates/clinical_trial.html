@@ -1,19 +1,22 @@
-
 {% extends "layout.html" %}
 {% block content %}
-<div class = "media content-section">
-    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_trials', clinical_trial_id=Name) }}">Update Clinical Trial Information</a>
-</div>
-    {% for row in outString %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2">Clinical Trial ID: {{row['clinical_trial_id'] }} </a> <br/>	 
-              <a class="mr-2">Lead Physician: {{row['lead_physician'] }}</a> <br/>	
-            </div>
-			<h2><a class="article-title" href="{{ url_for('clinical_trial', clinical_trial_id=row.clinical_trial_id) }}">{{ row.clinical_trial_id }}</a></h2>
-           
+  <article class="media content-section">
+<!--    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/default.jpg')}}"> -->
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ OutString.clinical_trial_id }}</a>
+        <small class="text-muted">{{now.strftime('%A %B, %d %Y %H:%M:%S')}}</small>
+
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_trials', clinical_trial_id=OutString.clinical_trial_id )}}">Update</a>
+            
           </div>
-        </article>
-     {% endfor %}
+ 
+      </div>
+
+    </div>
+  </article>
+  <!-- Modal -->
+  
+
 {% endblock content %}

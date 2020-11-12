@@ -1,16 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class = "card">
-        <h2><a class="text-muted"> Welcome! </a></br>
-            {% if current_user.is_authenticated == false %}
-        <small><a class="text-muted"> Please login or register to begin. </a></br>
-            {% endif %}
-        <small><a class="text-muted"> <em>Company Mission Statement.</em> </a></br>
-    </div>
-    <div class="card">
-        <h5><a class="article-title" href="{{ url_for('dept_home')}}">Departments</a></h5></br>
-        <h5><a class="article-title" href="{{ url_for('drug1')}}">Company Produced Drugs</a></h5></br>
-        <h5><a class="article-title" href="{{ url_for('participates1') }}">Participates</a></h5></br>
-        <h5><a class="article-title" href="{{ url_for('clinical1') }}">Clinical Trials</a></h5></br>
-    </div>
+    <img src="/static/PHARMACEUTICAL.jpg" alt="home image" width="730" height="206">
+    <article class="media content-section">
+        <div class="media-body">
+            <h2><a class="text-muted"> Welcome! </a></br>
+            <small><a class="text-muted"><em>Create innovative, patient-focused biotechnology and treatments for debilitating conditions and diseases.</em></a>
+        </div>
+    </article>
 {% endblock content %}

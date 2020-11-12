@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for row in joined_1_n %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ row }}</a> <br/>
+              <small class="text-muted">{{ row.courseID }} {{ row.facultyID }}  {{ row.facultyName }}</small>
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+	  {% for row in joined_m_n %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ row }}</a> <br/>
+              <small class="text-muted">{{ row.courseID }} {{ row.facultyID }}  {{ row.facultyName }} {{row.courseName}}</small>
+            </div>
+           
+          </div>
+        </article>
+     {% endfor %}
+	
+{% endblock content %}

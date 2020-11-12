@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+<!--    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/default.jpg')}}"> -->
+    <div class="media-body">
+      <div class="article-metadata">
+        <h2 class="mr-2" href="#"><span class="text-muted font-weight-normal">{{dept.department_id}}</span> {{ dept.department_name }}</h2>
+
+      </div>
+      <small class="text-muted">{{now.strftime('%A %B, %d %Y %H:%M:%S')}}</small>
+        <p>Manager: {{manager.employee_name}}</p>
+        {% if dept_size > 1 %}
+        <p>Size: {{dept_size}} employees</p>
+        {% else %}
+        <p>Size: {{dept_size}} employee</p>
+        {% endif %}
+
+
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_dept', department_id=dept.department_id) }}">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          </div>
+
+    </div>
+
+  </article>
+  <article class = "media content-section">
+    <div class = "media-body">
+        <h3>{{dept.department_name}} Employees: </h3>
+        {% for emp in employees %}
+          <p>
+            <a href="{{ url_for('update_emp', employee_id=emp.employee_id) }}" class="text-info"><i class="fa fa-pencil-square"></i></a>
+            <a data-toggle="modal" data-target="#emp_{{emp.employee_id}}_deleteModal" class="text-danger"><i class="fa fa-trash-o"></i></a>
+             {{emp.employee_id}} {{emp.employee_name}}
+          </p>
+        <!--Modal for emp-->
+        <div class="modal fade" id="emp_{{emp.employee_id}}_deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="empdeleteModalLabel">Delete {{emp.employee_name}}?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="{{ url_for('delete_emp', employee_id=emp.employee_id) }}" method="POST">
+                  <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+  </article>
+  <!-- Modal for Department-->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Department?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_dept', department_id=dept.department_id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

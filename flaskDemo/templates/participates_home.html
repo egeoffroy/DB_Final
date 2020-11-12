@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for row in outString %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">Patient ID: {{row['patient_id']}}</a> <br/>
+              <a class="text-muted">Clinical Trial Number and Stage Number: {{ row['clinical_trial_id'] }}  {{ row['stage_num'] }}</a> <br/>
+              <a class="text-muted">Completed Trial? : {{row['Completes_trial']}}</a> <br/>
+            </div>
+            <h5><a class="btn btn-sm btn-secondary" href="{{ url_for('update_participates', patient_id=row.patient_id, stage_num=row.stage_num, clinical_trial_id=row.clinical_trial_id)}}">Update</a></h5>
+
+          </div>
+         </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

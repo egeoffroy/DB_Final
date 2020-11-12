@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+  <div>
+   <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_drug', drug_name=Name) }}">Update Drug Information</a>
+  </div>
+</article>
+    {% for row in outString %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">Drug Name: {{row['drug_name']}}</a> <br/>
+              <a class="mr-2">Phenotype: {{ row.phenotype_id}}</a> <br/>
+              <a class="mr-2">Phenotype Name: {{ row.phenotype_name}}</a> <br/>
+              <a class="mr-2">Protein ID : {{row['protein_id']}}</a> <br/>
+              <a class="mr-2">Protein Name : {{row['protein_name']}}</a> <br/>
+              <a class="mr-2">Protein Subunit # : {{row['subunit_num']}}</a> <br/>
+            </div>           
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for row in outString %}
+        <article class="media content-section">
+
+          <div class="media-body">
+            <h2><a class="article-title" href="{{ url_for('dept', department_id=row.department_id) }}">{{ row.department_name }} </a></h2>
+
+            <div class="article-metadata">
+              <a class="text-muted">  Department ID: {{ row['department_id'] }}</a></br>
+              <a class="text-muted">  Manager ID: {{ row['managerID'] }}</a>
+            </div>
+          </div>
+        </article>
+     {% endfor %}
+<a class = "btn btn-primary" href="{{url_for('new_dept')}}">Add Department</a>
+{% endblock content %}

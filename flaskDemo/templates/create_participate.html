@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">{{ legend }}</legend>
+      <p>Patient ID: {{form.patient_id.data}}</p>
+      <p>Clinical Trial ID: {{form.clinical_trial_id.data}}</p>
+      <p>Stage: {{form.stage_num.data}}</p>
+<!--      <div class="form-group">-->
+<!--        {{ form.patient_id.label(class="form-control-label") }}-->
+<!--        {% if form.patient_id.errors %}-->
+<!--          {{ form.pno(class="form-control form-control-lg is-invalid") }}-->
+<!--          <div class="invalid-feedback">-->
+<!--            {% for error in form.patient_id.errors %}-->
+<!--              <span>{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--          </div>-->
+<!--        {% else %}-->
+<!--          {{ form.patient_id(class="form-control form-control-lg") }}-->
+<!--        {% endif %}-->
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        {{ form.clinical_trial_id.label(class="form-control-label") }}-->
+<!--        {% if form.clinical_trial_id.errors %}-->
+<!--          {{ form.clinical_trial_id(class="form-control form-control-lg is-invalid") }}-->
+<!--          <div class="invalid-feedback">-->
+<!--            {% for error in form.clinical_trial_id.errors %}-->
+<!--              <span>{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--          </div>-->
+<!--        {% else %}-->
+<!--          {{ form.clinical_trial_id(class="form-control form-control-lg") }}-->
+<!--        {% endif %}-->
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        {{ form.stage_num.label(class="form-control-label") }}-->
+<!--        {% if form.stage_num.errors %}-->
+<!--          {{ form.stage_num(class="form-control form-control-lg is-invalid") }}-->
+<!--          <div class="invalid-feedback">-->
+<!--            {% for error in form.stage_num.errors %}-->
+<!--              <span>{{ error }}</span>-->
+<!--            {% endfor %}-->
+<!--          </div>-->
+<!--        {% else %}-->
+<!--          {{ form.stage_num(class="form-control form-control-lg") }}-->
+<!--        {% endif %}-->
+<!--      </div>-->
+      <div class="form-group">
+        {{ form.Completes_trial.label(class="form-control-label") }}
+        {% if form.Completes_trial.errors %}
+          {{ form.Completes_trial(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.Completes_trial.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.Completes_trial(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.start_date.label(class="form-control-label") }}
+        {% if form.start_date.errors %}
+          {{ form.start_date(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.start_date.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.start_date(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.End_date.label(class="form-control-label") }}
+        {% if form.End_date.errors %}
+          {{ form.End_date(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.End_date.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.End_date(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+    </fieldset>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+  </form>
+</div>
+{% endblock content %}

@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     {% if title %}
         <title>Pharmaceutical Drug Development - {{ title }}</title>
     {% else %}
@@ -26,17 +25,13 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('participates1') }}">Clinical Trials</a>
-              <a class="nav-item nav-link" href="{{ url_for('drug1') }}">Drugs</a>
-              <a class="nav-item nav-link" href="{{ url_for('dept1') }}">Departments</a>
-              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
-            </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
 <!--                <a class="nav-item nav-link" href="{{ url_for('new_dept') }}">New Dept</a>-->
+
+                <a class="nav-item nav-link" href="{{ url_for('participates1') }}">Patient Information</a>
+                <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
               {% else %}
@@ -61,6 +56,17 @@
             {% endif %}
           {% endwith %}
           {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section">
+              <h3>Resources</h3>
+              <ul class="list-group">
+                <h5><a class="article-title" href="{{ url_for('dept_home')}}">Departments</a></h5></br>
+                <h5><a class="article-title" href="{{ url_for('drug1')}}">Company Produced Drugs</a></h5></br>
+                <h5><a class="article-title" href="{{ url_for('participates1') }}">Participates</a></h5></br>
+                <h5><a class="article-title" href="{{ url_for('clinical1') }}">Clinical Trials</a></h5></br>
+              </ul>
+          </div>
         </div>
     </main>
 

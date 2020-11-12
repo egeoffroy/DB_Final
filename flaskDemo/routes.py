@@ -374,25 +374,25 @@ def new_trial():
     """ CREATE New Trial """
     form = TrialForm()
     if form.validate_on_submit():
-        clinical_trial = clinical_trial(clinical_trial_id=form.clinical_trial_id.data, lead_physician=form.lead_physician.data)
+        clinical_trial = Clinical_trial(clinical_trial_id=form.clinical_trial_id.data, lead_physician=form.lead_physician.data)
         db.session.add(clinical_trial)
         db.session.commit()
         flash('You have added a new clinical trial!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('clinical1'))
     return render_template('create_trial.html', title='New Clinical Trial',
                             form=form, legend='New Clinical Trial')  
 
 @app.route("/clinicaltrials/<clinical_trial_id>/update", methods=['GET','POST'])
 @login_required
-def update_trials(clinical_trial_id, lead_physician):
-    clinical_trial = Clinical_trial.query.get_or_404([clinical_trial_id, lead_physician])
+def update_trials(clinical_trial_id):
+    clinical_trial = Clinical_trial.query.get_or_404(clinical_trial_id)
     currentID = clinical_trial.clinical_trial_id
     currentPhysician = clinical_trial.lead_physician
     form = TrialUpdateForm()
     if form.validate_on_submit():         
         if currentID !=form.clinical_trial_id.data:
             clinical_trial.clinical_trial_id=form.clinical_trial_id.data
-        if currentPhysician !=form.Completes_trial.data:
+        if currentPhysician !=form.lead_physician.data:
             clinical_trial.lead_physician=form.lead_physician.data
         db.session.commit()
         flash('This clinical trial has been updated!', 'success')
@@ -402,4 +402,8 @@ def update_trials(clinical_trial_id, lead_physician):
         form.lead_physician = clinical_trial.lead_physician
     return render_template('create_trial.html', title='Update Clinical Trial',
                             form=form, legend='Update Clinical Trial')
+
+
+
+
 

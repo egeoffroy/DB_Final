@@ -8,10 +8,10 @@ from flaskDemo import db
 from flaskDemo.models import User, Department, Drug, Employee, Protein, Interacts_with, Side_effect, Patient, Clinical_trial, Clinical_trial_stage, Phenotype, Demonstrates, Participates # , getDepartment, getDepartmentFactory, Project, Works_on
 from wtforms.fields.html5 import DateField
 
-#Insertion
-me = Drug(drug_name = 'Zolgensma', drug_type = 'Gene therapy')
-db.session.add(me)
-db.session.commit()
+# #Insertion
+# me = Drug(drug_name = 'Zolgensma', drug_type = 'Gene therapy')
+# db.session.add(me)
+# db.session.commit()
 
 
 drugs = Drug.query.with_entities(Drug.drug_name)
